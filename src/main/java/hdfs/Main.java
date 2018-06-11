@@ -30,6 +30,6 @@ public class Main {
 
     @Test
     public void uploadFile() throws Exception {
-        HdfsClient.updload("F:/02.avi", "/02.avi");
+        HdfsClient.updload("F:/test.data", "/wordcount/test.data");
     }
 }
