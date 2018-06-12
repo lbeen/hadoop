@@ -6,6 +6,8 @@ import org.junit.Test;
 
 
 /**
+ * test hdfs
+ *
  * @author 李斌
  */
 public class Main {
