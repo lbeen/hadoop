@@ -22,16 +22,16 @@ public class Main {
 
     @Test
     public void removeFile() throws Exception {
-        HdfsClient.removeFile("/02.avi");
+        HdfsClient.removeFile("/wc");
     }
 
     @Test
     public void downloadFile() throws Exception {
-        HdfsClient.downLoad("/01.avi", "F:/01.avi");
+        HdfsClient.downLoad("/wc/test.data", "/tmp/test.data");
     }
 
     @Test
     public void uploadFile() throws Exception {
-        HdfsClient.updload("F:/test.data", "/wordcount/test.data");
+        HdfsClient.updload("/tmp/test.data", "/wc/test.data");
     }
 }

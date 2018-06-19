@@ -14,13 +14,15 @@ import java.io.OutputStream;
 import java.util.Random;
 
 /**
+ * test mapreduce
+ *
  * @author 李斌
  */
 public class Main {
 
     @Test
     public void creatTestFile() throws Exception {
-        OutputStream os = new FileOutputStream("F:/test.data");
+        OutputStream os = new FileOutputStream("/tmp/test.data");
         Random random = new Random();
 
         StringBuilder sb = new StringBuilder();
@@ -35,7 +37,6 @@ public class Main {
         os.close();
     }
 
-//    @Test
     public static void main(String[] args) throws Exception {
         Job job = Job.getInstance(new Configuration());
 
@@ -43,13 +44,15 @@ public class Main {
 
         job.setMapperClass(WordCountMapper.class);
 
+        job.setCombinerClass(WordCountReduce.class);
+
         job.setReducerClass(WordCountReduce.class);
 
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(LongWritable.class);
 
-        FileInputFormat.setInputPaths(job, "hdfs://192.168.1.112:9000/wordcount/test.data");
-        FileOutputFormat.setOutputPath(job, new Path("F:/result"));
+        FileInputFormat.setInputPaths(job, "/tmp/wc/test.data");
+        FileOutputFormat.setOutputPath(job, new Path("/tmp/wc/result"));
 
         boolean res = job.waitForCompletion(true);
 

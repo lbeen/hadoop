@@ -5,9 +5,9 @@ import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
-import java.net.URI;
-
 /**
+ * hdfsClient
+ *
  * @author 李斌
  */
 public class HdfsClient {
@@ -35,22 +35,13 @@ public class HdfsClient {
                 if (FS == null) {
                     synchronized (HdfsClient.class) {
                         Configuration conf = new Configuration();
-                        conf.set("fs.defaultFS", "hdfs://192.168.1.112:9000/");
+                        conf.set("fs.defaultFS", "hdfs://hadoop2:9000/");
                         conf.set("dfs.replication", "1");
-                        FS = FileSystem.get(new URI("hdfs://192.168.1.112:9000/"), conf, "root");
+                        FS = FileSystem.get(conf);
                     }
                 }
             }
         }
         return FS;
-    }
-
-
-    public static void main(String[] args) throws Exception {
-        FileSystem fs = getFileSystem();
-//        FSDataInputStream is = fs.open(new Path("/01.avi"));
-//        FileOutputStream os = new FileOutputStream("F:/01.avi");
-//        IOUtils.copy(is, os);
-        fs.copyFromLocalFile(new Path("F:/02.avi"), new Path("/02.avi"));
     }
 }
