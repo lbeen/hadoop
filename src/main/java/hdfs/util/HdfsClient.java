@@ -35,7 +35,7 @@ public class HdfsClient {
                 if (FS == null) {
                     synchronized (HdfsClient.class) {
                         Configuration conf = new Configuration();
-                        conf.set("fs.defaultFS", "hdfs://hadoop2:9000/");
+                        conf.set("fs.defaultFS", "hdfs://hadoop1:9000/");
                         conf.set("dfs.replication", "1");
                         FS = FileSystem.get(conf);
                     }

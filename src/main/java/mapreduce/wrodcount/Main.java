@@ -22,7 +22,7 @@ public class Main {
 
     @Test
     public void creatTestFile() throws Exception {
-        OutputStream os = new FileOutputStream("/tmp/test.data");
+        OutputStream os = new FileOutputStream("F:/src.data");
         Random random = new Random();
 
         StringBuilder sb = new StringBuilder();
@@ -34,6 +34,7 @@ public class Main {
         }
 
         os.write(sb.toString().getBytes());
+        os.flush();
         os.close();
     }
 
@@ -51,8 +52,8 @@ public class Main {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(LongWritable.class);
 
-        FileInputFormat.setInputPaths(job, "/tmp/wc/test.data");
-        FileOutputFormat.setOutputPath(job, new Path("/tmp/wc/result"));
+        FileInputFormat.setInputPaths(job, "hdfs://ns1/wc/src.data");
+        FileOutputFormat.setOutputPath(job, new Path("hdfs://ns1/wc/result"));
 
         boolean res = job.waitForCompletion(true);
 
