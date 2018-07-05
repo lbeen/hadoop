@@ -15,9 +15,9 @@ public class ZCountMapper extends Mapper<LongWritable, Text, Text, DoubleWritabl
 
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-       if (value != null){
-           String[] words = StringUtils.split(value.toString());
-           context.write(new Text(words[0]), new DoubleWritable(Double.valueOf(words[2])));
-       }
+        if (value != null) {
+            String[] words = StringUtils.split(value.toString());
+            context.write(new Text(words[0]), new DoubleWritable(Double.valueOf(words[2])));
+        }
     }
 }

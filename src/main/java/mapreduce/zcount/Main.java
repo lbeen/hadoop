@@ -2,6 +2,7 @@ package mapreduce.zcount;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
@@ -21,6 +22,8 @@ public class Main {
         job.setJarByClass(Main.class);
 
         job.setMapperClass(ZCountMapper.class);
+        job.setMapOutputKeyClass(Text.class);
+        job.setMapOutputValueClass(DoubleWritable.class);
 
         job.setCombinerClass(ZCountReduce.class);
 
