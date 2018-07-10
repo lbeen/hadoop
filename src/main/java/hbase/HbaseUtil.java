@@ -12,11 +12,13 @@ import java.io.IOException;
  * @author 李斌
  */
 public class HbaseUtil {
-
-    public static Admin getAdmin() throws IOException {
+    public static Connection getConnection() throws IOException {
         Configuration conf = HBaseConfiguration.create();
         conf.set("hbase.zookeeper.quorum", "hadoop1,hadoop2,hadoop3");
-        Connection connection = ConnectionFactory.createConnection(conf);
-        return connection.getAdmin();
+        return ConnectionFactory.createConnection(conf);
+    }
+
+    public static Admin getAdmin() throws IOException {
+        return getConnection().getAdmin();
     }
 }
