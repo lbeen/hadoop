@@ -22,7 +22,7 @@ public class Main {
 
         job.setMapperClass(ZCountMapper.class);
 
-        job.setCombinerClass(ZCountReduce.class);
+//        job.setCombinerClass(ZCountReduce.class);
 
         job.setReducerClass(ZCountReduce.class);
 
