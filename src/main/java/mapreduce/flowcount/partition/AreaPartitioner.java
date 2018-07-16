@@ -9,7 +9,7 @@ public class AreaPartitioner<KEY, VALUE> extends Partitioner<KEY, VALUE> {
     @Override
     public int getPartition(KEY key, VALUE value, int numPartitions) {
         String prefix = key.toString().substring(0, 3);
-        switch (prefix){
+        switch (prefix) {
             case "136":
                 return 1;
             case "139":

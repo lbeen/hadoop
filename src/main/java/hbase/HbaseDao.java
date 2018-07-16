@@ -10,7 +10,7 @@ import org.apache.hadoop.hbase.client.Admin;
  */
 public class HbaseDao {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
         //hBaseAdmin对表进行管理的客户端
         Admin admin = HbaseUtil.getAdmin();
