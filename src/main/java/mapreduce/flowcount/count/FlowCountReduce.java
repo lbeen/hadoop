@@ -11,6 +11,7 @@ import java.io.IOException;
  */
 public class FlowCountReduce extends Reducer<Text, FlowBean, Text, FlowBean> {
     private FlowBean flowBean = new FlowBean();
+
     @Override
     protected void reduce(Text key, Iterable<FlowBean> values, Context context) throws IOException, InterruptedException {
         long upFlow = 0;

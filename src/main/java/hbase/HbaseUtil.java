@@ -11,14 +11,14 @@ import java.io.IOException;
 /**
  * @author 李斌
  */
-public class HbaseUtil {
-    public static Connection getConnection() throws IOException {
+class HbaseUtil {
+    static Connection getConnection() throws IOException {
         Configuration conf = HBaseConfiguration.create();
         conf.set("hbase.zookeeper.quorum", "hadoop1,hadoop2,hadoop3");
         return ConnectionFactory.createConnection(conf);
     }
 
-    public static Admin getAdmin() throws IOException {
+    static Admin getAdmin() throws IOException {
         return getConnection().getAdmin();
     }
 }

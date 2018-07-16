@@ -1,6 +1,5 @@
 package mapreduce.flowcount;
 
-import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.io.WritableComparable;
 
 import java.io.DataInput;
@@ -62,7 +61,7 @@ public class FlowBean implements WritableComparable<FlowBean> {
 
     @Override
     public int compareTo(FlowBean o) {
-        if (o == null){
+        if (o == null) {
             return 1;
         }
         return sumFlow > o.sumFlow ? -1 : 1;

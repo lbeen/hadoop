@@ -56,7 +56,7 @@ public class Main {
                 }
             }
             sb.append("\n");
-            if (++i > 100000){
+            if (++i > 100000) {
                 os.write(sb.toString().getBytes());
                 os.flush();
                 sb.setLength(0);
