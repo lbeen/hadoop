@@ -14,7 +14,7 @@ public class Main {
 
     @Test
     public void listFile() throws Exception {
-        FileStatus[] files = HdfsClient.listFile("/");
+        FileStatus[] files = HdfsClient.listFile("/wr");
         for (FileStatus file : files) {
             System.out.println(file);
         }
@@ -22,16 +22,16 @@ public class Main {
 
     @Test
     public void removeFile() throws Exception {
-        HdfsClient.removeFile("/wc");
+        HdfsClient.removeFile("/fc/http.data");
     }
 
     @Test
     public void downloadFile() throws Exception {
-        HdfsClient.downLoad("/wc/test.data", "/tmp/test.data");
+        HdfsClient.downLoad("/fc/http.data", "/tmp/fc/http.data");
     }
 
     @Test
     public void uploadFile() throws Exception {
-        HdfsClient.updload("/tmp/test.data", "/wc/test.data");
+        HdfsClient.updload("/tmp/http.data", "/fc/http.data");
     }
 }

@@ -25,15 +25,15 @@ public class Main {
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(DoubleWritable.class);
 
-//        job.setCombinerClass(ZCountReduce.class);
+        //job.setCombinerClass(ZCountReduce.class);
 
         job.setReducerClass(ZCountReduce.class);
 
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(LongWritable.class);
 
-        FileInputFormat.setInputPaths(job, "hdfs://ns1/zc/src.data");
-        FileOutputFormat.setOutputPath(job, new Path("hdfs://ns1/zc/result"));
+        FileInputFormat.setInputPaths(job, "/wr/src.data");
+        FileOutputFormat.setOutputPath(job, new Path("/wr/result"));
 
         boolean res = job.waitForCompletion(true);
 

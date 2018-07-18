@@ -22,14 +22,13 @@ public class Main {
 
         job.setMapperClass(FlowCountMappper.class);
 
-
         job.setReducerClass(FlowCountReduce.class);
 
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(FlowBean.class);
 
-        FileInputFormat.setInputPaths(job, "/tmp/fc/http.data");
-        FileOutputFormat.setOutputPath(job, new Path("/tmp/fc/result"));
+        FileInputFormat.setInputPaths(job, "/fc/http.data");
+        FileOutputFormat.setOutputPath(job, new Path("/fc/result"));
 
         boolean res = job.waitForCompletion(true);
 

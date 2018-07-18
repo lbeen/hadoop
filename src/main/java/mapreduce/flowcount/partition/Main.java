@@ -36,8 +36,8 @@ public class Main {
 
         job.setOutputValueClass(FlowBean.class);
 
-        FileInputFormat.setInputPaths(job, "hdfs://hadoop1:9000/fc/HTTP_20130313143750.dat");
-        FileOutputFormat.setOutputPath(job, new Path("hdfs://hadoop1:9000/fc/result"));
+        FileInputFormat.setInputPaths(job, "/fc/http.data");
+        FileOutputFormat.setOutputPath(job, new Path("/fc/result"));
 
         boolean res = job.waitForCompletion(true);
 

@@ -18,7 +18,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Dao dao = DBUtils.dao();
-        OutputStream os = new FileOutputStream("F:/src.data");
+        OutputStream os = new FileOutputStream("/tmp/src.data");
         writeData(dao, os, "2007");
         writeData(dao, os, "2008");
         writeData(dao, os, "2009");

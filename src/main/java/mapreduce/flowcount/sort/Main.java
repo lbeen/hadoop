@@ -29,8 +29,8 @@ public class Main {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(FlowBean.class);
 
-        FileInputFormat.setInputPaths(job, "/tmp/fc/result/part-r-00000");
-        FileOutputFormat.setOutputPath(job, new Path("/tmp/fc/result/result"));
+        FileInputFormat.setInputPaths(job, "/fc/result/part-r-00000");
+        FileOutputFormat.setOutputPath(job, new Path("/fc/result/result"));
 
         boolean res = job.waitForCompletion(true);
 
