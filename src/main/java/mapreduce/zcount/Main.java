@@ -25,7 +25,7 @@ public class Main {
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(DoubleWritable.class);
 
-        //job.setCombinerClass(ZCountReduce.class);
+        job.setCombinerClass(ZCountReduce.class);
 
         job.setReducerClass(ZCountReduce.class);
 
