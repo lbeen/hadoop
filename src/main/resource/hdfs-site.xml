@@ -29,7 +29,7 @@
 	</property>
 	<!-- nn1的RPC通信地址 -->
 	<property>
-		<name>dfs.namenode.rpc-address.ns1.nn1</name>
+		<name>dfs.namenode.hadoop.rpc-address.ns1.nn1</name>
 		<value>hadoop3:9000</value>
 	</property>
 	<!-- nn1的http通信地址 -->
@@ -39,7 +39,7 @@
 	</property>
 	<!-- nn2的RPC通信地址 -->
 	<property>
-		<name>dfs.namenode.rpc-address.ns1.nn2</name>
+		<name>dfs.namenode.hadoop.rpc-address.ns1.nn2</name>
 		<value>hadoop1:9000</value>
 	</property>
 	<!-- nn2的http通信地址 -->
@@ -65,7 +65,7 @@
 	<!-- 配置失败自动切换实现方式 -->
 	<property>
 		<name>dfs.client.failover.proxy.provider.ns1</name>
-		<value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+		<value>hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
 	</property>
 	<!-- 配置隔离机制方法，多个机制用换行分割，即每个机制暂用一行-->
 	<property>
