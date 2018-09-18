@@ -2,47 +2,29 @@ package learn
 
 object FunctionTest {
   def main(args: Array[String]): Unit = {
-    val fun = extract(5)(0.0001) _
-    val result = fun(5, 1)
-    println(result)
+    def accuracy(accuracy: Double): (Double, Double) => Boolean = (value: Double, root: Double) => {
+      val result = value - root * root
+      if (result >= 0) result > accuracy else result < -accuracy
+    }
+
+    val fun = square(accuracy(0.0001)) _
+
+    println(fun(3, 1))
   }
 
   /**
     * 求根柯里化函数
     *
-    * @param square   几次根
-    * @param accuracy 精度
+    * @param accuracy 精度判断函数
     * @param value    开方数
     * @param forecast 预测值
     */
-  def extract(square: Int)(accuracy: Double)(value: Double, forecast: Double): Double = {
-    if (square == 0) {
-      return 1
-    }
-    if (square == 1) {
-      return value
-    }
-    if (square == -1) {
-      return 1 / value
-    }
-    val squareAbs = if (square > 0) square else -square
-    val accuracyAbs = if (accuracy > 0) accuracy else -accuracy
-
+  def square(accuracy: (Double, Double) => Boolean)(value: Double, forecast: Double): Double = {
     var root = forecast
-    var squareResult = root
-    for (_ <- 1 until squareAbs) {
-      squareResult *= root
-    }
-
-    while (value - squareResult > accuracyAbs || value - squareResult < -accuracyAbs) {
+    while (accuracy(value, root)) {
       println(root)
-      root = (root + value / squareResult * root) / 2
-      squareResult = root
-      for (_ <- 1 until squareAbs) {
-        squareResult *= root
-      }
+      root = (root + value / root) / 2
     }
-
-    if (square > 0) root else 1 / root
+    root
   }
 }
