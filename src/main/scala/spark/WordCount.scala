@@ -10,7 +10,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object WordCount {
 
   def main(args: Array[String]): Unit = {
-    val sc = new SparkContext(new SparkConf().setAppName("wordCount").setMaster("local"))
+    val sc = new SparkContext(new SparkConf().setAppName("wordCount"))
 
     //读取文件并切割成单词
     val words = sc.textFile(args(0)).flatMap(_.split(" "))

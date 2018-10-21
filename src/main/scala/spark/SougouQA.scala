@@ -7,7 +7,7 @@ import org.apache.spark.{SparkConf, SparkContext}
   */
 object SougouQA {
   def main(args: Array[String]): Unit = {
-    val sc = new SparkContext(new SparkConf().setAppName("SougouQA").setMaster("hadoop1"))
+    val sc = new SparkContext(new SparkConf().setAppName("SougouQA"))
 
     //读取符合要求的行
     val lines = sc.textFile(args(0)).map(_.split("\t")).filter(_.length == 6)

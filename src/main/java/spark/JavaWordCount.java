@@ -15,7 +15,7 @@ import java.util.Arrays;
  */
 public class JavaWordCount {
     public static void main(String[] args) {
-        JavaSparkContext sc = new JavaSparkContext(new SparkConf().setAppName("javaWordCount").setMaster("hadoop1"));
+        JavaSparkContext sc = new JavaSparkContext(new SparkConf().setAppName("javaWordCount"));
 
         //读取文件并切割成单词
         JavaRDD<String> words = sc.textFile(args[0]).flatMap(line -> Arrays.asList(line.split(" ")).iterator());
