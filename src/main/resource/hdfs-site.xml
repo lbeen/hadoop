@@ -29,23 +29,23 @@
 	</property>
 	<!-- nn1的RPC通信地址 -->
 	<property>
-		<name>dfs.namenode.hadoop.rpc-address.ns1.nn1</name>
-		<value>hadoop3:9000</value>
+		<name>dfs.namenode.rpc-address.ns1.nn1</name>
+		<value>hadoop1:9000</value>
 	</property>
 	<!-- nn1的http通信地址 -->
 	<property>
 		<name>dfs.namenode.http-address.ns1.nn1</name>
-		<value>hadoop3:50070</value>
+		<value>hadoop1:50070</value>
 	</property>
 	<!-- nn2的RPC通信地址 -->
 	<property>
-		<name>dfs.namenode.hadoop.rpc-address.ns1.nn2</name>
-		<value>hadoop1:9000</value>
+		<name>dfs.namenode.rpc-address.ns1.nn2</name>
+		<value>hadoop2:9000</value>
 	</property>
 	<!-- nn2的http通信地址 -->
 	<property>
 		<name>dfs.namenode.http-address.ns1.nn2</name>
-		<value>hadoop1:50070</value>
+		<value>hadoop2:50070</value>
 	</property>
 	<!-- 指定NameNode的元数据在JournalNode上的存放位置 -->
 	<property>
@@ -55,7 +55,7 @@
 	<!-- 指定JournalNode在本地磁盘存放数据的位置 -->
 	<property>
 		<name>dfs.journalnode.edits.dir</name>
-		<value>/home/hadoop/app/hadoop-2.9.1/journaldata</value>
+	<value>/home/hadoop/app/hadoop-2.8.4/journaldata</value>
 	</property>
 	<!-- 开启NameNode失败自动切换 -->
 	<property>
@@ -65,7 +65,7 @@
 	<!-- 配置失败自动切换实现方式 -->
 	<property>
 		<name>dfs.client.failover.proxy.provider.ns1</name>
-		<value>hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+		<value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
 	</property>
 	<!-- 配置隔离机制方法，多个机制用换行分割，即每个机制暂用一行-->
 	<property>
