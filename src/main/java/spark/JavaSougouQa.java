@@ -22,7 +22,7 @@ public class JavaSougouQa {
         JavaPairRDD<String, Integer> counted = lines.mapToPair(line -> new Tuple2<>(line[1], 1)).reduceByKey((c1, c2) -> c1 + c2);
 
         //访问数排序后去除访问数大于20的数据
-        JavaPairRDD<String, Integer> sorted = counted.mapToPair(Tuple2::swap).sortByKey().filter(tuple -> tuple._1 > 20).mapToPair(Tuple2::swap);
+        JavaPairRDD<String, Integer> sorted = counted.mapToPair(Tuple2::swap).sortByKey().filter(tuple -> tuple._1 > 100).mapToPair(Tuple2::swap);
 
         //保存结果
         sorted.saveAsTextFile(args[1]);
