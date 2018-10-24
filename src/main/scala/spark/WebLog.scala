@@ -5,7 +5,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 /**
   * scala版搜狗访问日志统计
   */
-object SougouQA {
+object WebLog {
   def main(args: Array[String]): Unit = {
     val sc = new SparkContext(new SparkConf().setAppName("SougouQA"))
 

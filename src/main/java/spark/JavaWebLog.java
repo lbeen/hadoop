@@ -11,7 +11,7 @@ import scala.Tuple2;
  *
  * @author 李斌
  */
-public class JavaSougouQa {
+public class JavaWebLog {
     public static void main(String[] args) {
         JavaSparkContext sc = new JavaSparkContext(new SparkConf().setAppName("javaWordCount"));
 
