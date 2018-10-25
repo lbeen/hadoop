@@ -7,7 +7,7 @@ import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 
 /**
- * java版搜狗访问日志统计
+ * java版网站访问日志统计
  *
  * @author 李斌
  */

@@ -3,7 +3,7 @@ package spark
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
-  * scala版搜狗访问日志统计
+  * scala版网站访问日志统计
   */
 object WebLog {
   def main(args: Array[String]): Unit = {

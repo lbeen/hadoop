@@ -5,7 +5,7 @@ import java.net.URL
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
-  * scala版搜狗访问日志统计
+  * scala版网站访问日志统计
   */
 object WebLog2 {
   def main(args: Array[String]): Unit = {
@@ -15,12 +15,7 @@ object WebLog2 {
     val lines = sc.textFile(args(0)).map(_.split("\t")).filter(_.length == 6)
 
     //id和网址组成tuple作为key，统计每个人每个网站访问次数
-
-//    val countedByIdAndWeb = lines.map(line => {
-//      ((line(1), new URL(lines(5)).getHost), 1)
-//    }).reduceByKey(_ + _)
-
-    val countedByIdAndWeb = lines.map(line => ((line(1), new URL(lines(5)).getHost), 1)).reduceByKey(_ + _)
+    val countedByIdAndWeb = lines.map(line => ((line(1), new URL(line(5)).getHost), 1)).reduceByKey(_ + _)
 
     //按网站分组
     var groupByWeb = countedByIdAndWeb.groupBy(_._1._2)
