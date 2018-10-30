@@ -14,7 +14,7 @@ public class Main {
 
     @Test
     public void listFile() throws Exception {
-        FileStatus[] files = HdfsClient.listFile("/wr");
+        FileStatus[] files = HdfsClient.listFile("/spark_test");
         for (FileStatus file : files) {
             System.out.println(file);
         }

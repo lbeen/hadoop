@@ -1,9 +1,10 @@
-package hadoop.nutz;
+package hadoop.hbase.inputmr;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.nutz.dao.Dao;
 import org.nutz.dao.entity.Record;
+import util.DBUtils;
 
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -13,8 +14,8 @@ import java.util.Map;
 /**
  * @author 李斌
  */
-public class Main {
-    private static final Log LOG = LogFactory.getLog(Main.class);
+public class WrWriteFile {
+    private static final Log LOG = LogFactory.getLog(WrWriteFile.class);
 
     public static void main(String[] args) throws Exception {
         Dao dao = DBUtils.dao();

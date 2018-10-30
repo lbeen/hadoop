@@ -14,7 +14,7 @@ import java.io.IOException;
 class HbaseUtil {
     static Connection getConnection() throws IOException {
         Configuration conf = HBaseConfiguration.create();
-        conf.set("hadoop.hbase.zookeeper.quorum", "hadoop1,hadoop2,hadoop3");
+        conf.set("hbase.zookeeper.quorum", "hadoop1,hadoop2,hadoop3");
         return ConnectionFactory.createConnection(conf);
     }
 

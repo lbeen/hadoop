@@ -7,7 +7,7 @@
     <groupId>hadoop</groupId>
     <artifactId>hadoop</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>war</packaging>
 
     <name>hadoop Maven Webapp</name>
     <url>http://www.example.com</url>

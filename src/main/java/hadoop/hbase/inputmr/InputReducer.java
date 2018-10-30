@@ -1,4 +1,4 @@
-package hbase.inputmr;
+package hadoop.hbase.inputmr;
 
 import org.apache.hadoop.hbase.client.Put;
 import org.apache.hadoop.hbase.mapreduce.TableReducer;

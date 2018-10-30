@@ -1,5 +1,6 @@
-package hadoop.nutz;
+package util;
 
+import hadoop.hbase.inputmr.WrWriteFile;
 import org.nutz.dao.Dao;
 import org.nutz.dao.entity.Record;
 import org.nutz.dao.impl.NutDao;
@@ -16,15 +17,15 @@ import java.util.function.Consumer;
 /**
  * @author 李斌
  */
-class DBUtils {
-    static Dao dao() throws Exception {
+public class DBUtils {
+    public static Dao dao() throws Exception {
         Properties properties = new Properties();
-        properties.load(Main.class.getClassLoader().getResourceAsStream("db.properties"));
+        properties.load(WrWriteFile.class.getClassLoader().getResourceAsStream("db.properties"));
         DataSource dataSource = SimpleDataSource.createDataSource(properties);
         return new NutDao(dataSource);
     }
 
-    static List<Record> getRecords(Dao dao, String sqlStr, Consumer<Sql> sqlConsumer) {
+    public static List<Record> getRecords(Dao dao, String sqlStr, Consumer<Sql> sqlConsumer) {
         NutSql sql = new NutSql(sqlStr);
         sqlConsumer.accept(sql);
         sql.setCallback(new QueryRecordCallback());

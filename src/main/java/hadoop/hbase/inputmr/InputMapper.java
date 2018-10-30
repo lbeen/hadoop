@@ -1,4 +1,4 @@
-package hbase.inputmr;
+package hadoop.hbase.inputmr;
 
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
