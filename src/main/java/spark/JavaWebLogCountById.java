@@ -7,13 +7,13 @@ import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 
 /**
- * java版网站访问日志统计
+ * java版网站访问日志统计（统计每个id访问次数）
  *
  * @author 李斌
  */
-public class JavaWebLog {
+public class JavaWebLogCountById {
     public static void main(String[] args) {
-        JavaSparkContext sc = new JavaSparkContext(new SparkConf().setAppName("javaWordCount"));
+        JavaSparkContext sc = new JavaSparkContext(new SparkConf().setAppName("JavaWebLogCountById"));
 
         //读取符合要求的行
         JavaRDD<String[]> lines = sc.textFile(args[0]).map(text -> text.split("\t")).filter(line -> line.length == 6);

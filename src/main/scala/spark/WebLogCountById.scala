@@ -3,11 +3,11 @@ package spark
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
-  * scala版网站访问日志统计
+  * 网站访问日志统计（统计每个id访问次数）
   */
-object WebLog {
+object WebLogCountById {
   def main(args: Array[String]): Unit = {
-    val sc = new SparkContext(new SparkConf().setAppName("SougouQA"))
+    val sc = new SparkContext(new SparkConf().setAppName("WebLogCountById"))
 
     //读取符合要求的行
     val lines = sc.textFile(args(0)).map(_.split("\t")).filter(_.length == 6)
