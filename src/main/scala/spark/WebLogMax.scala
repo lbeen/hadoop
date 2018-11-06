@@ -1,30 +1,36 @@
 package spark
 
-import org.apache.spark.rdd.RDD
 import org.apache.spark.{Partitioner, SparkConf, SparkContext}
 
+/**
+  * 排序求每个网站访问最多的id
+  */
 object WebLogMax {
 
   def main(args: Array[String]): Unit = {
-    val sc = new SparkContext(new SparkConf().setAppName("WebLogByHost").setMaster("local[*]"))
-    //读取符合要求的行
+    val sc = new SparkContext(new SparkConf().setAppName("WebLogMax").setMaster("local[*]"))
+    //读取数据
     val lines = sc.textFile("/spark_test/weblog2.txt").map(_.split("\t"))
 
-    val partitioned: RDD[(String, String)] = lines.map(line => (line(0), line(1))).partitionBy(new WebPatitioner)
+    //以网站和id为key求访问此书
+    val reduced = lines.map(line => ((line(0), line(1)), 1)).reduceByKey(_ + _)
 
-    val reduced: RDD[((String, String), Int)] = partitioned.map((_, 1)).reduceByKey(_ + _)
+    //分区
+    val partitioned = reduced.map(t => (t._1._1, (t._1._2, t._2))).partitionBy(new WebPatitioner)
 
-    val grouped: RDD[(String, String, Int)] = reduced.groupBy(_._1._1).map(t => {
-      val head = t._2.toList.sortBy(_._2).reverse.head
-      (t._1, head._1._2, head._2)
-    })
+    //排序求每个网站访问最多的id
+    val sorted = partitioned.mapPartitions(_.toList.groupBy(_._1).map(_._2.sortBy(_._2._2).reverse.head).toList.sortBy(_._2._2).reverseIterator)
 
-    val sorted = grouped.sortBy(_._3)
+    //格式化一下
+    val formated = sorted.map(r => r._1 + "\t" + r._2._1 + "\t" + r._2._2)
 
-    sorted.saveAsTextFile("/spark_test/res2")
+    formated.saveAsTextFile("/spark_test/res10")
   }
 }
 
+/**
+  * 自定义以网站分区
+  */
 class WebPatitioner extends Partitioner {
   override def numPartitions: Int = 2
 
