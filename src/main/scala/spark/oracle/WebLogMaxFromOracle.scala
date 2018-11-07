@@ -12,14 +12,11 @@ object WebLogMax {
   def main(args: Array[String]): Unit = {
     val sc = new SparkContext(new SparkConf().setAppName("WebLogMaxFromOracle.scala").setMaster("local[*]"))
 
-    var sql = "SEL"
-    new JdbcRDD(sc, DBUtils.getConnection, )
-
-    //读取数据
-    val lines = sc.textFile("/spark_test/weblog2.txt").map(_.split("\t"))
+    val sql = "SELECT ID,WEB,COUNTS FROM (SELECT ROWNUM N,ID,WEB,COUNTS FROM WEB_LOG_1) WHERE N>=? AND N<=?"
+    val jdbcRdd: JdbcRDD[((String, String), Int)] = new JdbcRDD(sc, DBUtils.getConnection, sql, 1, 98849, 2, rs => ((rs.getString("ID"), rs.getString("WEB")), rs.getInt("COUNTS")))
 
     //以网站和id为key求访问此书
-    val reduced = lines.map(line => ((line(0), line(1)), 1)).reduceByKey(_ + _)
+    val reduced = jdbcRdd.reduceByKey(_ + _)
 
     //分区
     val partitioned = reduced.map(t => (t._1._1, (t._1._2, t._2))).partitionBy(new WebPatitioner)
