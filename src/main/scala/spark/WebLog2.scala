@@ -9,10 +9,10 @@ import org.apache.spark.{SparkConf, SparkContext}
   */
 object WebLog2 {
   def main(args: Array[String]): Unit = {
-    val sc = new SparkContext(new SparkConf().setAppName("WebLog2"))
+    val sc = new SparkContext(new SparkConf().setAppName("WebLog2").setMaster("local[*]"))
 
     //读取符合要求的行
-    val lines = sc.textFile(args(0)).map(_.split("\t")).filter(_.length == 6)
+    val lines = sc.textFile("/spark_test/weblog.txt").map(_.split("\t")).filter(_.length == 6)
 
     //id和网址组成tuple作为key，统计每个人每个网站访问次数
     val countedByIdAndWeb = lines.map(line => ((line(1), new URL(line(5)).getHost), 1)).reduceByKey(_ + _)
@@ -28,7 +28,7 @@ object WebLog2 {
     val result = max.filter(_._2 > 5).sortBy(_._2, desc)
 
     //保存结果
-    result.saveAsTextFile(args(1))
+    result.saveAsTextFile("/spark_test/res1")
 
     //停止spack任务
     sc.stop()

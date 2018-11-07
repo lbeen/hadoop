@@ -7,7 +7,7 @@ import util.ScalaUtil
 /**
   * 访问日志ip归属地统计排序
   */
-class IpLocation {
+object IpLocation {
   def main(args: Array[String]): Unit = {
     val sc = new SparkContext(new SparkConf().setAppName("WebLogByHost").setMaster("local[*]"))
 

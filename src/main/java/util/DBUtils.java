@@ -10,6 +10,7 @@ import org.nutz.dao.impl.sql.callback.QueryRecordCallback;
 import org.nutz.dao.sql.Sql;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
 import java.util.List;
 import java.util.Properties;
 import java.util.function.Consumer;
@@ -19,10 +20,20 @@ import java.util.function.Consumer;
  */
 public class DBUtils {
     public static Dao dao() throws Exception {
+        DataSource dataSource = getDataSource();
+        return new NutDao(dataSource);
+    }
+
+    public static Connection getConnection() throws Exception {
+        DataSource dataSource = getDataSource();
+        return dataSource.getConnection();
+
+    }
+
+    private static DataSource getDataSource() throws Exception {
         Properties properties = new Properties();
         properties.load(WrWriteFile.class.getClassLoader().getResourceAsStream("db.properties"));
-        DataSource dataSource = SimpleDataSource.createDataSource(properties);
-        return new NutDao(dataSource);
+        return SimpleDataSource.createDataSource(properties);
     }
 
     public static List<Record> getRecords(Dao dao, String sqlStr, Consumer<Sql> sqlConsumer) {
