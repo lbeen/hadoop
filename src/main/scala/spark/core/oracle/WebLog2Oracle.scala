@@ -1,4 +1,4 @@
-package spark.oracle
+package spark.core.oracle
 
 import java.net.URL
 

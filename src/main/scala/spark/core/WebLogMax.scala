@@ -1,4 +1,4 @@
-package spark
+package spark.core
 
 import org.apache.spark.{Partitioner, SparkConf, SparkContext}
 

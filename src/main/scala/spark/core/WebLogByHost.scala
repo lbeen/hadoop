@@ -1,4 +1,4 @@
-package spark
+package spark.core
 
 import java.net.URL
 

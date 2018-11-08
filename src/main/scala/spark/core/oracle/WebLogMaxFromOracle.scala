@@ -1,4 +1,4 @@
-package spark.oracle
+package spark.core.oracle
 
 import org.apache.spark.rdd.JdbcRDD
 import org.apache.spark.{SparkConf, SparkContext}
