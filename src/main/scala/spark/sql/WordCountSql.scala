@@ -1,6 +1,6 @@
 package spark.sql
 
-import org.apache.spark.sql.{Dataset, SparkSession}
+import org.apache.spark.sql.{DataFrame, Dataset, SparkSession}
 
 /**
   * scala版sparkWordCount
@@ -22,9 +22,14 @@ object WordCountSql {
     import session.implicits._
     val words: Dataset[String] = lines.flatMap(_.split(" "))
 
+    //创建临时视图
+    words.createTempView("V_WORDS")
+
     //sql
     val result = session.sql("SELECT VALUE,COUNT(1) COUNTS FROM V_WORDS GROUP BY VALUE ORDER BY COUNTS DESC")
 
     result.show()
+
+    session.close()
   }
 }
