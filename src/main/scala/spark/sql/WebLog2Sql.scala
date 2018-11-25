@@ -8,7 +8,7 @@ import org.apache.spark.sql.{Row, SparkSession}
 /**
   * scala sql版网站访问日志统计
   */
-object WebLog2 {
+object WebLog2Sql {
   def main(args: Array[String]): Unit = {
     val builder = SparkSession.builder().appName("WebLog2Sql").master("local[*]")
 

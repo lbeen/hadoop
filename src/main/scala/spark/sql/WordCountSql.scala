@@ -7,7 +7,7 @@ import org.apache.spark.sql.{Dataset, SparkSession}
   *
   * @author 李斌
   */
-object WordCount {
+object WordCountSql {
 
   def main(args: Array[String]): Unit = {
     val builder = SparkSession.builder().appName("WordCountSql").master("local[*]")

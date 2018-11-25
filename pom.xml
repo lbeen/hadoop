@@ -21,6 +21,7 @@
         <solr.version>7.4.0</solr.version>
         <spark.version>2.3.1</spark.version>
         <scala.version>2.11.8</scala.version>
+        <hive.version>1.2.2</hive.version>
     </properties>
 
     <dependencies>
@@ -50,6 +51,11 @@
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-mapreduce-client-common</artifactId>
             <version>${hadoop.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-exec</artifactId>
+            <version>${hive.version}</version>
         </dependency>
         <!--hbase-->
         <dependency>
