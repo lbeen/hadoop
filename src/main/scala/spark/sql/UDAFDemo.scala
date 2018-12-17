@@ -2,24 +2,26 @@ package spark.sql
 
 import java.lang
 
-import org.apache.spark.sql.{Dataset, Row, SparkSession}
 import org.apache.spark.sql.expressions.{MutableAggregationBuffer, UserDefinedAggregateFunction}
 import org.apache.spark.sql.types._
+import org.apache.spark.sql.{Dataset, Row, SparkSession}
 
 object UDAFDemo {
   def main(args: Array[String]): Unit = {
-    val builder = SparkSession.builder().appName("WebLog2Sql").master("local[*]")
+    val builder = SparkSession.builder().appName("UDAFDemo").master("local[1]")
 
     //获取session
     val session = builder.getOrCreate()
 
-    val df: Dataset[lang.Long] = session.range(1,10)
+    val df: Dataset[lang.Long] = session.range(1, 10)
+
+    df.show()
 
     session.udf.register("GM", new UDAFFun)
 
     df.createTempView("V_NUM")
-    
-    val result = session.sql("SELECT GM(ID) FROM V_NUM")
+
+    val result = session.sql("SELECT GM(ID) RESULT FROM V_NUM")
 
     result.show()
   }
@@ -57,11 +59,11 @@ class UDAFFun extends UserDefinedAggregateFunction {
   //负责合并两个聚合运算的buffer，在将其存储到MutableAggregationBuffer中
   override def merge(buffer1: MutableAggregationBuffer, buffer2: Row): Unit = {
     buffer1(0) = buffer1.getAs[Long](0) + buffer2.getAs[Long](0)
-    buffer1(1) = buffer1.getAs[Double](1) + buffer2.getAs[Double](1)
+    buffer1(1) = buffer1.getAs[Double](1) * buffer2.getAs[Double](1)
   }
 
   //完成对聚合buffer值的运算，得到最后的结果
   override def evaluate(buffer: Row): Any = {
-    math.pow(buffer.getDouble(1), 1/buffer.getDouble(0))
+    math.pow(buffer.getDouble(1), 1.toDouble / buffer.getLong(0))
   }
 }
